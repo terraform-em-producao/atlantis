@@ -57,8 +57,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: ci
     runs-on: ubuntu-latest
-    # O environment "producao" exige aprovação manual. Só jobs com ele
-    # conseguem assumir a role de apply (o sub do token inclui o environment).
+    # Só jobs com o environment "producao" conseguem assumir a role de apply (o sub do token inclui o environment).
     environment: producao
     permissions:
       contents: read

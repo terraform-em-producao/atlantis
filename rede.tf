@@ -109,6 +109,8 @@ resource "aws_vpc_security_group_ingress_rule" "task_do_alb" {
 }
 
 # O Atlantis precisa sair para GitHub, registry do Terraform e APIs da AWS.
+# Esses destinos não têm faixa de IP fixa, então a saída é aberta.
+#trivy:ignore:AWS-0104
 resource "aws_vpc_security_group_egress_rule" "task_saida" {
   security_group_id = aws_security_group.task.id
   cidr_ipv4         = "0.0.0.0/0"

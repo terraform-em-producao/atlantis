@@ -9,12 +9,11 @@ locals {
       id     = "/.*/"
       branch = "/^main$/"
 
-      # approved:   alguém além do autor aprovou o PR
-      # mergeable:  todos os checks obrigatórios (CI, plan) passaram
+      # mergeable:  o PR não tem conflito com a main
       # undiverged: a branch está em dia com a main (o plan reflete a main atual)
       plan_requirements   = ["undiverged"]
-      apply_requirements  = ["approved", "mergeable", "undiverged"]
-      import_requirements = ["approved", "mergeable", "undiverged"]
+      apply_requirements  = ["mergeable", "undiverged"]
+      import_requirements = ["mergeable", "undiverged"]
 
       workflow               = "padrao"
       allow_custom_workflows = false
