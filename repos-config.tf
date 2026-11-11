@@ -42,7 +42,7 @@ locals {
 
     policies = {
       owners = {
-        users = var.donos_das_policies
+        teams = var.times_donos_das_policies
       }
       policy_sets = [{
         name   = "padroes-da-org"
