@@ -33,6 +33,9 @@ resource "aws_acm_certificate_validation" "atlantis" {
   validation_record_fqdns = [for r in aws_route53_record.validacao : r.fqdn]
 }
 
+# Público de propósito: o GitHub precisa alcançar o webhook. A proteção é o
+# secret do webhook, o HTTPS e a lista de repos atendidos.
+#trivy:ignore:AWS-0053
 resource "aws_lb" "atlantis" {
   name                       = "atlantis"
   load_balancer_type         = "application"

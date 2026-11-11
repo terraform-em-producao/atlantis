@@ -26,7 +26,7 @@ locals {
     ATLANTIS_ATLANTIS_URL            = local.url
     ATLANTIS_PORT                    = "4141"
     ATLANTIS_DATA_DIR                = "/atlantis-data"
-    ATLANTIS_REPO_ALLOWLIST          = "github.com/${var.github_org}/*"
+    ATLANTIS_REPO_ALLOWLIST          = join(",", [for r in var.repos_gerenciados : "github.com/${var.github_org}/${r}"])
     ATLANTIS_REPO_CONFIG_JSON        = jsonencode(local.repos_config)
     ATLANTIS_GH_APP_SLUG             = var.github_app_slug
     ATLANTIS_WRITE_GIT_CREDS         = "true"
