@@ -23,21 +23,22 @@ locals {
   ])
 
   ambiente = {
-    ATLANTIS_ATLANTIS_URL            = local.url
-    ATLANTIS_PORT                    = "4141"
-    ATLANTIS_DATA_DIR                = "/atlantis-data"
-    ATLANTIS_REPO_ALLOWLIST          = join(",", [for r in var.repos_gerenciados : "github.com/${var.github_org}/${r}"])
-    ATLANTIS_REPO_CONFIG_JSON        = jsonencode(local.repos_config)
-    ATLANTIS_GH_APP_SLUG             = var.github_app_slug
-    ATLANTIS_WRITE_GIT_CREDS         = "true"
-    ATLANTIS_DEFAULT_TF_VERSION      = var.terraform_version
-    ATLANTIS_ENABLE_POLICY_CHECKS    = "true"
-    ATLANTIS_CHECKOUT_STRATEGY       = "merge"
-    ATLANTIS_HIDE_PREV_PLAN_COMMENTS = "true"
-    ATLANTIS_EMOJI_REACTION          = "eyes"
-    ATLANTIS_WEB_BASIC_AUTH          = "true"
-    ATLANTIS_WEB_USERNAME            = "admin"
-    AWS_REGION                       = var.regiao
+    ATLANTIS_ATLANTIS_URL             = local.url
+    ATLANTIS_PORT                     = "4141"
+    ATLANTIS_DATA_DIR                 = "/atlantis-data"
+    ATLANTIS_REPO_ALLOWLIST           = join(",", [for r in var.repos_gerenciados : "github.com/${var.github_org}/${r}"])
+    ATLANTIS_SILENCE_ALLOWLIST_ERRORS = "true" # app instalado na org toda: ignora repos fora da lista sem comentar
+    ATLANTIS_REPO_CONFIG_JSON         = jsonencode(local.repos_config)
+    ATLANTIS_GH_APP_SLUG              = var.github_app_slug
+    ATLANTIS_WRITE_GIT_CREDS          = "true"
+    ATLANTIS_DEFAULT_TF_VERSION       = var.terraform_version
+    ATLANTIS_ENABLE_POLICY_CHECKS     = "true"
+    ATLANTIS_CHECKOUT_STRATEGY        = "merge"
+    ATLANTIS_HIDE_PREV_PLAN_COMMENTS  = "true"
+    ATLANTIS_EMOJI_REACTION           = "eyes"
+    ATLANTIS_WEB_BASIC_AUTH           = "true"
+    ATLANTIS_WEB_USERNAME             = "admin"
+    AWS_REGION                        = var.regiao
   }
 
   segredos = {
