@@ -21,14 +21,14 @@ GitHub ──webhook──► ALB (HTTPS, ACM) ──► Fargate (1 task) ──
 | `allow_custom_workflows: false` | Senão qualquer PR roda `run: curl ... \| sh` com as credenciais do Atlantis |
 | EFS + 1 task | Lock fica em disco (BoltDB); perder o disco = perder os locks |
 | Segredos fora do state | O Terraform cria o secret vazio; o valor é gravado pela CLI |
-| Deploy via Actions + OIDC | O Atlantis não se aplica sozinho; o apply exige aprovação no environment `producao` |
+| Deploy via Actions + OIDC | O Atlantis não se aplica sozinho; o apply roda no environment `producao`, o único que assume a role de apply |
 | Policies numa tag | Mudar regra passa por PR nos dois repos |
 
 ## Requisitos
 
 1. `bootstrap` aplicado e o NS de `terraform.gomex.me` delegado.
 2. Repo `policies` com a tag `v1.0.0`.
-3. Environment `producao` neste repo com *required reviewers*.
+3. Environment `producao` neste repo (o `publicar.sh` já cria).
 
 ## Subindo pela primeira vez
 
@@ -86,7 +86,7 @@ Em *GitHub App → Advanced → Recent deliveries* o ping deve aparecer com `200
 
 ## Do segundo deploy em diante
 
-PR neste repo → CI + plan (role `github-atlantis-plan`) → merge → aprovação no environment `producao` → apply (role `github-atlantis-apply`).
+PR neste repo → CI + plan (role `github-atlantis-plan`) → merge → apply no environment `producao` (role `github-atlantis-apply`).
 
 ## Custo aproximado (us-east-1)
 
