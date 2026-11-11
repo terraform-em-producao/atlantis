@@ -44,10 +44,10 @@ variable "repos_gerenciados" {
   default     = ["groundwork", "infra-live"]
 }
 
-variable "donos_das_policies" {
-  description = "Usuários do GitHub que podem rodar `atlantis approve_policies`."
+variable "times_donos_das_policies" {
+  description = "Times da org que podem rodar `atlantis approve_policies`. Quem entra ou sai do time ganha ou perde o poder sem deploy."
   type        = list(string)
-  default     = ["gomex"]
+  default     = ["donos-policies"]
 }
 
 variable "cpu" {
