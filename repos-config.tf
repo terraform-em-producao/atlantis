@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------
 # Configuração server-side: as regras que NENHUM repo consegue afrouxar.
 # O atlantis.yaml de cada repo só escolhe projetos/diretórios; quem decide
-# se pode aplicar sem aprovação é este arquivo, que passa por PR e deploy.
+# o que é exigido antes do apply é este arquivo, que passa por PR e deploy.
 # ---------------------------------------------------------------------------
 locals {
   repos_config = {

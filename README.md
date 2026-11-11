@@ -17,7 +17,7 @@ GitHub ──webhook──► ALB (HTTPS, ACM) ──► Fargate (1 task) ──
 | Allowlist só com `groundwork` e `infra-live` | O app está instalado na org toda, mas o Atlantis ignora os outros repos |
 | GitHub App, não token pessoal | Token expira em 1h, permissão por repo, não morre quando alguém sai da empresa |
 | Task role sem permissão de recurso | Cada stack tem a sua role (`terraform-exec-*`), criada no bootstrap |
-| `repos.yaml` server-side | `approved` + `mergeable` + `undiverged` + policy check não podem ser desligados por um repo |
+| `repos.yaml` server-side | `mergeable` + `undiverged` + policy check não podem ser desligados por um repo |
 | `allow_custom_workflows: false` | Senão qualquer PR roda `run: curl ... \| sh` com as credenciais do Atlantis |
 | EFS + 1 task | Lock fica em disco (BoltDB); perder o disco = perder os locks |
 | Segredos fora do state | O Terraform cria o secret vazio; o valor é gravado pela CLI |
